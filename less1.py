@@ -9,4 +9,13 @@ def type_print():
         print(type(word), word)
 
 
-type_print()
+def transform_bite_format(*args):
+    output_data = []
+    for word in args:
+        b_word = eval(f'b"{word}"')
+        print(type(b_word), b_word, len(b_word))
+
+
+# type_print()
+transform_bite_format('class', 'function', 'method')
+
