@@ -47,12 +47,30 @@ def test_ping(*args):
             print(line.decode('utf-8'))
 
 
-# type_print('разработка', 'сокет', 'декоратор')
-# type_print('\u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u043a\u0430', '\u0441\u043e\u043a\u0435\u0442',
-#            '\u0434\u0435\u043a\u043e\u0440\u0430\u0442\u043e\u0440')
-# transform_bite_format('class', 'function', 'method')
-# print(not_write_byte_type('attribute', 'класс', 'функция', 'type'))
-# byte_list = str_byte_transform('разработка', 'администрирование', 'protocol', 'standard')
-# print(byte_list)
-# print(byte_str_transform(byte_list))
+def create_read_file():
+    with open('test_file.txt', 'w') as f:
+        f.write('сетевое программирование, сокет, декоратор')
+    with open('test_file.txt', 'br') as f:
+        result = chardet.detect(f.read())
+        print(result['encoding'])
+    with open('test_file.txt', 'r', encoding='utf-8', errors='replace') as f:
+        for line in f:
+            print(line)
+
+
+
+
+
+
+
+
+type_print('разработка', 'сокет', 'декоратор')
+type_print('\u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u043a\u0430', '\u0441\u043e\u043a\u0435\u0442',
+           '\u0434\u0435\u043a\u043e\u0440\u0430\u0442\u043e\u0440')
+transform_bite_format('class', 'function', 'method')
+print(not_write_byte_type('attribute', 'класс', 'функция', 'type'))
+byte_list = str_byte_transform('разработка', 'администрирование', 'protocol', 'standard')
+print(byte_list)
+print(byte_str_transform(byte_list))
 test_ping('www.yandex.ru', 'www.youtube.com')
+create_read_file()
