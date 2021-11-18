@@ -12,6 +12,43 @@ info_1.txt, info_2.txt, info_3.txt и формирующий новый «отч
 через вызов функции get_data(), а также сохранение подготовленных данных в соответствующий CSV-файл;
 Проверить работу программы через вызов функции write_to_csv().
 """
+import re
+import csv
+
 
 def get_data():
-    pass
+    main_data = [['Изготовитель ОС', 'Название ОС', 'Код продукта', 'Тип системы']]
+    os_prod_list = []
+    os_name_list = []
+    os_cod_list = []
+    os_type_list = []
+    file_list = ['info_1.txt', 'info_2.txt', 'info_3.txt']
+    for file in file_list:
+        with open(file, encoding='windows-1251') as f:
+            for line in f.readlines():
+                line = re.split(':\s*', line)
+                if line[0] == main_data[0][0]:
+                    os_prod_list.append(line[1].rstrip())
+                if line[0] == main_data[0][1]:
+                    os_name_list.append(line[1].rstrip())
+                if line[0] == main_data[0][2]:
+                    os_cod_list.append(line[1].rstrip())
+                if line[0] == main_data[0][3]:
+                    os_type_list.append(line[1].rstrip())
+    os_param_list = [os_prod_list, os_name_list, os_cod_list, os_type_list]
+    while len(os_param_list[0]):
+        row = []
+        for item in os_param_list:
+            row.append(item.pop(0))
+        main_data.append(row)
+    return main_data
+
+
+def write_to_csv(out_file):
+    with open(out_file, 'w', encoding='utf-8', newline='') as f:
+        f_writer = csv.writer(f)
+        for row in get_data():
+            f_writer.writerow(row)
+
+
+write_to_csv('output_2_1.csv')
