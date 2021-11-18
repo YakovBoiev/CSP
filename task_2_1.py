@@ -14,15 +14,16 @@ info_1.txt, info_2.txt, info_3.txt и формирующий новый «отч
 """
 import re
 import csv
+import os
 
 
 def get_data():
+    file_list = list(filter(lambda x: x.endswith('.txt'), os.listdir()))
     main_data = [['Изготовитель ОС', 'Название ОС', 'Код продукта', 'Тип системы']]
     os_prod_list = []
     os_name_list = []
     os_cod_list = []
     os_type_list = []
-    file_list = ['info_1.txt', 'info_2.txt', 'info_3.txt']
     for file in file_list:
         with open(file, encoding='windows-1251') as f:
             for line in f.readlines():
