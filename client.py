@@ -6,10 +6,10 @@ import socket
 import time
 from common.variables import ACTION, PRESENCE, TIME, USER, ACCOUNT_NAME, \
     RESPONSE, ERROR, DEFAULT_IP_ADDRESS, DEFAULT_PORT
-from common.utils import get_message, send_message
+from common.utils import get_message_new, send_message_new
 
 
-def create_presence(account_name='Guest'):
+def create_presence_new(account_name='Guest'):
     '''
     Функция генерирует запрос о присутствии клиента
     :param account_name:
@@ -56,10 +56,10 @@ def main():
 
     transport = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     transport.connect((server_address, server_port))
-    message_to_server = create_presence()
-    send_message(transport, message_to_server)
+    message_to_server = create_presence_new()
+    send_message_new(transport, message_to_server)
     try:
-        answer = process_ans(get_message(transport))
+        answer = process_ans(get_message_new(transport))
         print(answer)
     except (ValueError, json.JSONDecodeError):
         print('Не удалось декодировать сообщение сервера.')

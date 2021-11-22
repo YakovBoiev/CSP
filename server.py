@@ -5,7 +5,7 @@ import sys
 import json
 from common.variables import ACTION, ACCOUNT_NAME, RESPONSE, MAX_CONNECTIONS, \
     PRESENCE, TIME, USER, ERROR, DEFAULT_PORT, RESPONDEFAULT_IP_ADDRESSSE
-from common.utils import get_message, send_message
+from common.utils import get_message_new, send_message_new
 
 
 def process_client_message(message):
@@ -74,10 +74,10 @@ def main():
     while True:
         client, client_address = transport.accept()
         try:
-            message_from_cient = get_message(client)
+            message_from_cient = get_message_new(client)
             print(message_from_cient)
             response = process_client_message(message_from_cient)
-            send_message(client, response)
+            send_message_new(client, response)
             client.close()
         except (ValueError, json.JSONDecodeError):
             print('Принято некорретное сообщение от клиента.')
