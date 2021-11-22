@@ -3,7 +3,7 @@
 import json
 from common.variables import MAX_PACKAGE_LENGTH, ENCODING
 
-def get_message(client):
+def get_message_new(client):
     '''
     Утилита приёма и декодирования сообщения
     принимает байты выдаёт словарь, если приняточто-то другое отдаёт ошибку значения
@@ -21,7 +21,7 @@ def get_message(client):
     raise ValueError
 
 
-def send_message(sock, message):
+def send_message_new(sock, message):
     '''
     Утилита кодирования и отправки сообщения
     принимает словарь и отправляет его
