@@ -8,10 +8,13 @@ from common.variables import ACTION, ACCOUNT_NAME, RESPONSE, MAX_CONNECTIONS, \
 from common.utils import get_message, send_message
 import logging
 import logs.config_server_log
+from decos import log
 from errors import IncorrectDataRecivedError
 
 SERVER_LOGGER = logging.getLogger('server')
 
+
+@log
 def process_client_message(message):
     '''
     Обработчик сообщений от клиентов, принимает словарь -
@@ -30,6 +33,8 @@ def process_client_message(message):
         ERROR: 'Bad Request'
     }
 
+
+@log
 def create_arg_parser():
 
     parser = argparse.ArgumentParser()

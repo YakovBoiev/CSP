@@ -8,12 +8,14 @@ import time
 from common.variables import ACTION, PRESENCE, TIME, USER, ACCOUNT_NAME, \
     RESPONSE, ERROR, DEFAULT_IP_ADDRESS, DEFAULT_PORT
 from common.utils import get_message, send_message
+from decos import log
 from errors import ReqFieldMissingError
 import logs.config_client_log
 
 CLIENT_LOGGER = logging.getLogger('client')
 
 
+@log
 def create_presence(account_name='Guest'):
     '''
     Функция генерирует запрос о присутствии клиента
@@ -31,6 +33,7 @@ def create_presence(account_name='Guest'):
     return out
 
 
+@log
 def process_ans(message):
     '''
     Функция разбирает ответ сервера
@@ -44,6 +47,8 @@ def process_ans(message):
         return f'400 : {message[ERROR]}'
     raise ReqFieldMissingError(RESPONSE)
 
+
+@log
 def create_arg_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument('addr', default=DEFAULT_IP_ADDRESS, nargs='?')
